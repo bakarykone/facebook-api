@@ -1,38 +1,32 @@
 ```
 model User {
-  id        String     @id @default(uuid())
-  email     String
+  id        String   @id @default(uuid())
+  email     String   @unique
   password  String
-  Estimates Estimate[]
-  Invoices  Invoice[]
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
+  Profile   Profile?
+  Posts     Post[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
-model Invoice {
-  id        Int      @id @default(autoincrement())
-  client    String
-  total     Int
-  Estimate  Estimate?
-  User      User     @relation(fields:[userId], references: [id])
+model Profile {
+  id        Int    @id @default(autoincrement())
+  firstName String
+  lastName  String
+  User      User   @relation(fields: [userId], references: [id])
   userId    String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
-model Estimate {
-  id        Int      @id @default(autoincrement())
-  client    String
-  total     Int
-  expires   DateTime
-  Invoice   Invoice? @relation(fields:[invoiceId], references: [id]) 
-  invoiceId Int?
-  User      User     @relation(fields:[userId], references: [id])
-  userId    String
+model Post {
+  id       Int    @id @default(autoincrement())
+  message  String
+  Author   User   @relation(fields: [authorId], references: [id])
+  authorId String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
-```
 
 URIs
 ```

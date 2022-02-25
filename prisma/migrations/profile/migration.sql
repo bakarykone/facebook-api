@@ -1,9 +1,8 @@
 -- CreateTable
-CREATE TABLE "Estimate" (
+CREATE TABLE "Profile" (
     "id" SERIAL NOT NULL,
-    "client" TEXT NOT NULL,
-    "expires" TIMESTAMP(3) NOT NULL,
-    "total" INTEGER NOT NULL,
+    "firstName" TEXT NOT NULL,
+    "lastName" TIMESTAMP(3) NOT NULL,
     "userId" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
